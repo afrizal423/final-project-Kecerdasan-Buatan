@@ -1,7 +1,7 @@
 <p align="right">
 بِسْــــــــــــــمِ اللَّهِ الرَّحْمَنِ الرَّحِيم 
 </p>
-# Final Project Kecerdasan Buatan
+## Final Project Kecerdasan Buatan
 
 Final project ini menggunakan bahasa pemrogaman java. 
 ## Kelompok
