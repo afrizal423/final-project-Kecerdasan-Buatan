@@ -158,6 +158,9 @@ Jika hasil run kosong pada console. Silahkan run kembali, atau hapus cache/temp 
 ## FYI
 Dalam tahap awal di repo ini adalah kosongan, yang berarti masih ori kode dari yang diberikan oleh dosen. Setelah kelompok kami mendemokan hasilnya, baru saya akan membuat branch baru untuk hasil akhirnya.
 
+## Need To Know
+Program ini sepenuhnya diambil dari salah satu user Github. Jadi yang kami kerjakan disini, kami modifikasi code yang ada didalam fungsinya. <b>Perlu dikatahui juga</b> bahwasanya <i><b> kami masih menghormati orang yang membuat program ini.</i></b> Maka dari itu <b> Support Original Code</b>
+
 ## Sumber dan output
 Dalam hal ini saya telah menemukan sumber dari github lain. jadi saya dan kita kelompok mengusahakan berbeda kodenya namun tetap hasil seperti dalam diinginkan. Jika ingin menggunakan sumber yang sama, tolong dukungannya untuk tidak persis sama dari yang sumbernya.
 (untuk sumber silahkan cari sendiri, beberapa keyword dari readme ini pasti kalian akan cari di search engine)
