@@ -5,7 +5,7 @@
 # Final Project Kecerdasan Buatan
 
 Final project ini menggunakan bahasa pemrogaman java. 
-<b>Please read this first !!</b>
+<h3><b>Please read this first !!</b></h3><br>
 [For Your Information](https://github.com/afrizal423/final-project-Kecerdasan-Buatan/blob/master/README.md#fyi)
 [Need To Know](https://github.com/afrizal423/final-project-Kecerdasan-Buatan/blob/master/README.md#need-to-know)
 ## Kelompok
