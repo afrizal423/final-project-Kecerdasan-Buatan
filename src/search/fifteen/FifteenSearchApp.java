@@ -1,6 +1,8 @@
 package search.fifteen;
 
 import java.util.ArrayList;
+import java.util.PriorityQueue;
+import java.util.Comparator;
 import java.lang.Math;
 
 import search.Action;
@@ -15,11 +17,12 @@ public class FifteenSearchApp {
     public static void main(String[] args) {
         // create an initial fifteen puzzle state by first generating the goal config
         //PuzzleState myState=new PuzzleState();
-
+    	int shuffle = 20; // Number of shuffle is fixed here
         // Create a random puzzle and memorise the puzzle state.
-        PuzzleState myState= randomPuzzle(10);
+        PuzzleState myState= randomPuzzle(shuffle);
         PuzzleState myState2 = new PuzzleState(myState);
-
+        double[] ebf = new double[8]; // for storing EBF
+       
         // or "shuffle" the tiles around manually a little bit...
         //myState=new PuzzleState(myState, PuzzleState.MOVE_LEFT);
         //myState=new PuzzleState(myState, PuzzleState.MOVE_UP);
@@ -29,15 +32,32 @@ public class FifteenSearchApp {
 
         // now perform the search from the "shuffled" initial state (fringe is empty), and
         // pull out the actions that were used to generate this goal state from the initial state
-        Action[] actions1G = solveH1G(new PuzzleState(myState));
+        /*Action[] actions1G = solveH1G(new PuzzleState(myState));
         Action[] actions1A = solveH1A(new PuzzleState(myState));
         Action[] actions2G = solveH2G(new PuzzleState(myState));
-        Action[] actions2A = solveH2A(new PuzzleState(myState));
+        Action[] actions2A = solveH2A(new PuzzleState(myState)); */
+        Action[] actions3A = solveH3A(new PuzzleState(myState));
+        ebf[0] = Node.effectiveBranchingFactor(
+        		Node.getNodesExpandedInLastSearch(), shuffle);
 
         // List the initial state and results of actions performed.
         System.out.println("Initial state:");
         System.out.println(myState2.toString());
+        System.out.println("Solution via H3 with A*:-------------");
+        myState2 = new PuzzleState(myState);
+        for (int i=0; i<actions3A.length; i++) {
+            System.out.println((i+1)+": "+actions3A[actions3A.length-1-i]);
+            PuzzleState.performAction(myState2,actions3A[actions3A.length-1-i]);
+            System.out.println("Euclidean Distance : "+myState2.countEuclid());
+            System.out.println(myState2.toString());
+        }
+        System.out.println();
+        
+        System.out.println("H3");
+        System.out.println("Total Langkah A*: " + actions3A.length);
+        System.out.printf("Nilai Effective Branching Factor(EBF): %.3f\n", ebf[0]);
 
+/*
         System.out.println("Solution via H1 with Greedy:-------------");
         for (int i=0; i<actions1G.length; i++) {
             System.out.println((i+1)+": "+actions1G[actions1G.length-1-i]);
@@ -67,28 +87,45 @@ public class FifteenSearchApp {
             System.out.println((i+1)+": "+actions2A[actions2A.length-1-i]);
             PuzzleState.performAction(myState2,actions2A[actions2A.length-1-i]);
             System.out.println(myState2.toString());
-        }
+        }*/
+        
         
     }
 
     /**
      * Example solve
      * @param state initial puzzle state
-     */
+     
     public static Action[] solveTree(PuzzleState state){
         // now perform the search from the "shuffled" initial state (fringe is empty)
         Node goal=Node.breadthFirstSearch(state, new ArrayList());
         Action[] actions=goal.getActions();
         
         return actions;
-    }
+    }        */ 
 
+    public static Action[] solveH3A(PuzzleState state){
+    	/* call generic search by given initial state and priority queue with 
+	   	   [h(n1) + g(n1)] - [h(n2) + g(n2)] comparator. */
+    	Node goal = Node.breadthFirstSearch(state, new PriorityQueue<Node>(11, new Comparator<Node>() {
+    		public int compare(Node lhs,Node rhs) {
+    			//priority queue with comparator( [h(a) + g(a)] - [h(b) + g(b)] )	
+        		int lhsH3 = PuzzleState.wrongAboveAdjacent(lhs.getState().getTiles());
+        		int rhsH3 = PuzzleState.wrongAboveAdjacent(rhs.getState().getTiles());
+        		return (lhsH3 + (int)lhs.getCost()) - (rhsH3 + (int)rhs.getCost());
+        	} 
+    	}));
+    	Action[] actions = goal.getActions();
+    
+    	return actions;
+    }
+    
     /**
      * Example solve
      * You must change this function to solve the problem with your own 
      * Greedy implementation with heuristic function 1.
      * @param state initial puzzle state
-     */
+     
     public static Action[] solveH1G(PuzzleState state){
         // now perform the search from the "shuffled" initial state (fringe is empty)
         //Node goal = Node.myH1G(state, new ArrayList());
@@ -96,14 +133,14 @@ public class FifteenSearchApp {
         Action[] actions=goal.getActions();
         
         return actions;
-    }
+    }*/
 
     /**
      * Example solve
      * You must change this function to solve the problem with your own 
      * A* implementation with heuristic function 1.
      * @param state initial puzzle state
-     */
+    
     public static Action[] solveH1A(PuzzleState state){
         // now perform the search from the "shuffled" initial state (fringe is empty)
         //Node goal = Node.myH1A(state, new ArrayList());
@@ -111,14 +148,14 @@ public class FifteenSearchApp {
         Action[] actions=goal.getActions();
         
         return actions;
-    }
+    } */
 
      /**
      * Example solve
      * You must change this function to solve the problem with your own 
      * Greedy implementation with heuristic function 2.
      * @param state initial puzzle state
-     */
+     
     public static Action[] solveH2G(PuzzleState state){
         // now perform the search from the "shuffled" initial state (fringe is empty)
         //Node goal = Node.myH2G(state, new ArrayList());
@@ -126,14 +163,14 @@ public class FifteenSearchApp {
         Action[] actions=goal.getActions();
         
         return actions;
-    }
+    }*/
 
      /**
      * Example solve
      * You must change this function to solve the problem with your own 
      * A* implementation with heuristic function 2.
      * @param state initial puzzle state
-     */
+    
     public static Action[] solveH2A(PuzzleState state){
         // now perform the search from the "shuffled" initial state (fringe is empty)
         //Node goal = Node.myH2A(state, new ArrayList());
@@ -141,7 +178,7 @@ public class FifteenSearchApp {
         Action[] actions=goal.getActions();
         
         return actions;
-    }
+    } */
 
     /**
      * Generate a solvable random puzzle.
@@ -172,6 +209,7 @@ public class FifteenSearchApp {
                 ; // illegal move
             }
         }
+        System.out.println("Batasan langkah : "+totalMoves);
         return myState;
     }
 

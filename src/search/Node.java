@@ -2,6 +2,7 @@ package search;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.ArrayList;
 
 import search.fifteen.PuzzleState;
@@ -17,6 +18,8 @@ public class Node {
     private final Action action;
     private final double cost;
     private final int    depth;
+    private static int nodesExpandedInLastSearch;
+
 
     protected Node() {
         this(null, null, null, 0);
@@ -158,6 +161,9 @@ public class Node {
                 return(b);
         }
     }
+    public static int getNodesExpandedInLastSearch() {
+    	return nodesExpandedInLastSearch;
+    }
     
     /**
      * Executes a breadth-first search from an initial state and with a queue/open list/fringe. 
@@ -169,24 +175,36 @@ public class Node {
      * Modify this function to implement your heuristic function.
      */
     //public static Node breadthFirstSearch(State initial, List<Node> fringe) {
-    public static Node breadthFirstSearch(State initial, List fringe) {
-        // add the initial state to the fringe
-        fringe.add(new Node(initial)); 
+    //fungsi A* search
+    public static Node breadthFirstSearch(State initial, PriorityQueue<Node> fringe) {
+    	// reset the total number of nodes expanded to zero
+    	nodesExpandedInLastSearch = 0;
+    	// add the initial state node to the fringe
+    	fringe.add(new Node(initial));
+    	// have a list to keep track of all nodes generated
+    	ArrayList<Node> allNode = new ArrayList<Node>();
+    	allNode.add(new Node(initial));
+        System.out.println("Euclidean Distance = "+initial.countEuclid());
+        System.out.println();
         // loop through all nodes in the fringe
         while (!fringe.isEmpty()) { // test if fringe is empty, if yes "failure"
-            // poll the first node in the list
-            Node head=(Node)fringe.get(0);
-            fringe.remove(0);
-            // pull out the state in the node
-            State state=head.getState();
-            // examine it to see if it is a goal state
+        	// remove and return the most desirable node from the fringe
+    		Node head = fringe.poll();
+    		//check for not repeating with ancestor nodes and previous node 
+    		State state = head.getState();
+    		// if goal state, return the node
             if (state.goal()) {
                 return head; // if goal state then return this node
             }
-            // consider using a "closed list" for visited states (avoiding repeated states)
-            
-            // expand the node, and add all new states to the fringe
-            fringe.addAll(Arrays.asList(head.expand())); // a list adds new nodes to the end of the queue
+         // Generating child nodes and add to the fringe and list
+    		for (Object child:Arrays.asList(head.expand())) {
+    			if(!allNode.contains((Node)child)){
+    				fringe.add((Node)child);
+    				allNode.add((Node)child);
+    			}		
+    		}
+    		// increment the number of nodes expanded in this search
+    		nodesExpandedInLastSearch++;
         }
         return null;
     }

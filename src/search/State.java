@@ -25,4 +25,8 @@ public interface State {
      */
     public double pathcost(Action action);
 
+    public int[][] getTiles();
+
+	public double countEuclid();
+
 }
