@@ -5,6 +5,9 @@
 # Final Project Kecerdasan Buatan
 
 Final project ini menggunakan bahasa pemrogaman java. 
+<b>Please read this first !!</b>
+[For Your Information](https://github.com/afrizal423/final-project-Kecerdasan-Buatan/blob/master/README.md#fyi) |
+[Need To Know](https://github.com/afrizal423/final-project-Kecerdasan-Buatan/blob/master/README.md#need-to-know)
 ## Kelompok
 - Muhammad Iqbal D F
 - Afrizal Muhamad Yasin
@@ -158,81 +161,92 @@ Jika hasil run kosong pada console. Silahkan run kembali, atau hapus cache/temp 
 ## FYI
 Dalam tahap awal di repo ini adalah kosongan, yang berarti masih ori kode dari yang diberikan oleh dosen. Setelah kelompok kami mendemokan hasilnya, baru saya akan membuat branch baru untuk hasil akhirnya.
 
+## Need To Know
+Program ini sepenuhnya diambil dari salah satu user Github. Jadi yang kami kerjakan disini, kami modifikasi code yang ada didalam fungsinya. <b>Perlu dikatahui juga</b> bahwasanya <i><b> kami masih menghormati orang yang membuat program ini.</i></b> Maka dari itu <b> Support Original Code</b>
+
 ## Sumber dan output
 Dalam hal ini saya telah menemukan sumber dari github lain. jadi saya dan kita kelompok mengusahakan berbeda kodenya namun tetap hasil seperti dalam diinginkan. Jika ingin menggunakan sumber yang sama, tolong dukungannya untuk tidak persis sama dari yang sumbernya.
 (untuk sumber silahkan cari sendiri, beberapa keyword dari readme ini pasti kalian akan cari di search engine)
 
 ### Out yang diinginkan
 ```
+Batasan langkah : 10
+3 4 = 4.123105625617661
+4 8 = 3.1622776601683795
+12 11 = 2.8284271247461903
+8 12 = 2.23606797749979
+11 15 = 2.23606797749979
+15 16 = 1.4142135623730951
+Euclidean Distance = 16.000159927904903
+
 Initial state:
- 02 03 04 07
- 01 05 06 00
- 09 10 11 08
- 13 14 15 12
+ 01 02 00 03
+ 05 06 07 04
+ 09 10 12 08
+ 13 14 11 15
 
 Solution via H3 with A*:-------------
-1: UP
- 02 03 04 00
- 01 05 06 07
- 09 10 11 08
- 13 14 15 12
+1: RIGHT
+4 8 = 3.1622776601683795
+12 11 = 2.8284271247461903
+8 12 = 2.23606797749979
+11 15 = 2.23606797749979
+15 16 = 1.4142135623730951
+Euclidean Distance : 11.877054302287245
+ 01 02 03 00
+ 05 06 07 04
+ 09 10 12 08
+ 13 14 11 15
 
-2: LEFT
- 02 03 00 04
- 01 05 06 07
- 09 10 11 08
- 13 14 15 12
-
-3: LEFT
- 02 00 03 04
- 01 05 06 07
- 09 10 11 08
- 13 14 15 12
-
-4: LEFT
- 00 02 03 04
- 01 05 06 07
- 09 10 11 08
- 13 14 15 12
-
-5: DOWN
- 01 02 03 04
- 00 05 06 07
- 09 10 11 08
- 13 14 15 12
-
-6: RIGHT
- 01 02 03 04
- 05 00 06 07
- 09 10 11 08
- 13 14 15 12
-
-7: RIGHT
- 01 02 03 04
- 05 06 00 07
- 09 10 11 08
- 13 14 15 12
-
-8: RIGHT
+2: DOWN
+12 11 = 2.8284271247461903
+8 12 = 2.23606797749979
+11 15 = 2.23606797749979
+15 16 = 1.4142135623730951
+Euclidean Distance : 8.714776642118865
  01 02 03 04
  05 06 07 00
- 09 10 11 08
- 13 14 15 12
+ 09 10 12 08
+ 13 14 11 15
 
-9: DOWN
+3: DOWN
+12 11 = 2.8284271247461903
+11 15 = 2.23606797749979
+15 16 = 1.4142135623730951
+Euclidean Distance : 6.478708664619075
  01 02 03 04
  05 06 07 08
- 09 10 11 00
- 13 14 15 12
+ 09 10 12 00
+ 13 14 11 15
 
-10: DOWN
+4: LEFT
+11 15 = 2.23606797749979
+15 16 = 1.4142135623730951
+Euclidean Distance : 3.6502815398728847
+ 01 02 03 04
+ 05 06 07 08
+ 09 10 00 12
+ 13 14 11 15
+
+5: DOWN
+15 16 = 1.4142135623730951
+Euclidean Distance : 1.4142135623730951
+ 01 02 03 04
+ 05 06 07 08
+ 09 10 11 12
+ 13 14 00 15
+
+6: RIGHT
+Euclidean Distance : 0.0
  01 02 03 04
  05 06 07 08
  09 10 11 12
  13 14 15 00
 
+
 H3
-Total langkah A*: 10
-Nilai Effective Branching Factor(EBF): 1.047
+Total Langkah A*: 6
+Nilai Effective Branching Factor(EBF): 1.689
+
 
 ```
